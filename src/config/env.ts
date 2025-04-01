@@ -1,10 +1,10 @@
 import { config } from 'dotenv';
 import { join } from 'path';
 
-// Načtení .env souboru
+// Load .env file
 config({ path: join(process.cwd(), '.env') });
 
-// Konfigurace prostředí
+// Environment configuration
 export const env = {
   nodeEnv: process.env.NODE_ENV || 'development',
   port: parseInt(process.env.PORT || '8000', 10),
@@ -17,16 +17,16 @@ export const env = {
   }
 };
 
-// Validace konfigurace
+// Configuration validation
 if (env.nodeEnv === 'production' && env.jwt.secret === 'dev_secret') {
-  throw new Error('JWT_SECRET musí být nastaveno v produkčním prostředí');
+  throw new Error('JWT_SECRET must be set in production environment');
 }
 
-// Výpis konfigurace při startu (pouze v režimu vývoje)
+// Print configuration at startup (only in development mode)
 if (env.nodeEnv === 'development') {
-  console.log('📄 Konfigurace prostředí:');
-  console.log(`  • Prostředí: ${env.nodeEnv}`);
+  console.log('📄 Environment configuration:');
+  console.log(`  • Environment: ${env.nodeEnv}`);
   console.log(`  • Port: ${env.port}`);
   console.log(`  • DB URL: ${env.db.url.split('@')[0].replace(/:[^:]*@/, ':****@')}@${env.db.url.split('@')[1]}`);
-  console.log(`  • JWT expirace: ${env.jwt.expiresIn}`);
+  console.log(`  • JWT expiration: ${env.jwt.expiresIn}`);
 }

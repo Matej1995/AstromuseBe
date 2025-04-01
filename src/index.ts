@@ -1,34 +1,40 @@
-import fastify from 'fastify';
-import { env } from './config/env';
+import { env } from './config/env.js';
+import { testConnection, setupDatabase } from './db/index.js';
+import { buildApp } from './app.js';
 
-// Vytvoření Fastify instance
-const server = fastify({
-  logger: true
-});
-
-// Definice základního route
-server.get('/', async (request, reply) => {
-  return { message: 'Hello from Fastify and TypeScript!', env: env.nodeEnv };
-});
-
-// Vytvoření jednoduchého health checkpointu
-server.get('/health', async (request, reply) => {
-  return { 
-    status: 'ok', 
-    timestamp: new Date(),
-    env: env.nodeEnv
-  };
-});
-
-// Spuštění serveru
+// Server startup function
 const start = async () => {
   try {
-    await server.listen({ port: env.port, host: '0.0.0.0' });
-    console.log(`🚀 Server běží na http://localhost:${env.port}`);
+    // Test database connection
+    const isConnected = await testConnection();
+    if (!isConnected) {
+      console.log('⚠️ Proceeding without database, some features may not work.');
+    } else {
+      // Initialize database tables
+      await setupDatabase();
+    }
+    
+    // Build and start the application
+    const app = await buildApp();
+    
+    // Add root route
+    app.get('/', async () => {
+      return { 
+        message: 'Welcome to Astromuse API!', 
+        env: env.nodeEnv,
+        docs: `/docs` // Link to Swagger documentation
+      };
+    });
+    
+    // Start the server
+    await app.listen({ port: env.port, host: '0.0.0.0' });
+    console.log(`🚀 Server running at http://localhost:${env.port}`);
+    console.log(`📚 Swagger documentation available at http://localhost:${env.port}/docs`);
   } catch (err) {
-    server.log.error(err);
+    console.error('❌ Server startup error:', err);
     process.exit(1);
   }
 };
 
+// Start the application
 start();
