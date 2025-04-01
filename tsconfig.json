@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    /* Nastavení pro cílový JavaScript */
+    "target": "ES2020",                                  /* Novější verze JavaScriptu s lepší podporou moderních funkcí */
+    "module": "NodeNext",                                /* Lepší podpora pro Node.js moduly */
+    "moduleResolution": "NodeNext",                      /* Modernější způsob rozlišování modulů */
+    
+    /* Výstup */
+    "outDir": "dist",                                    /* Kam se uloží zkompilované soubory */
+    "sourceMap": true,                                   /* Umožní lepší debugování */
+    
+    /* Cesty */
+    "rootDir": "src",                                    /* Kde jsou zdrojové soubory */
+    "baseUrl": ".",                                      /* Základní cesta pro importy */
+    "paths": {
+      "@/*": ["src/*"]                                   /* Zkratka pro importy ze src adresáře */
+    },
+    
+    /* Kompatibilita */
+    "esModuleInterop": true,                             /* Lepší podpora pro importy mezi CommonJS a ES moduly */
+    "forceConsistentCasingInFileNames": true,            /* Konzistentní velikost písmen v názvech souborů */
+    
+    /* Typová kontrola */
+    "strict": true,                                      /* Přísná typová kontrola */
+    "skipLibCheck": true                                 /* Přeskočení kontroly typů v node_modules */
+  },
+  "include": ["src/**/*"],                               /* Které soubory zahrnout */
+  "exclude": ["node_modules", "dist"]                    /* Které soubory vyloučit */
+}
