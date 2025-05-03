@@ -3,8 +3,8 @@ import cors from '@fastify/cors';
 import swagger from '@fastify/swagger';
 import swaggerUi from '@fastify/swagger-ui';
 // import authPlugin from './plugins/auth.js'; // Will be implemented later
-import routes from './routes/index.js';
-import { env } from './config/env.js';
+import routes from './interface/http/routes/index.js';
+import { env } from './infrastructure/config/env.js';
 
 export async function buildApp(): Promise<FastifyInstance> {
   const app = fastify({

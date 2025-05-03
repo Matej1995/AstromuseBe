@@ -1,5 +1,5 @@
-import { env } from './config/env.js';
-import { testConnection, setupDatabase } from './db/index.js';
+import { env } from './infrastructure/config/env.js';
+import { testConnection, setupDatabase } from './infrastructure/db/index.js';
 import { buildApp } from './app.js';
 
 // Server startup function

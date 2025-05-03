@@ -2,7 +2,7 @@ import pg from 'pg';
 const { Pool } = pg;
 
 import { Kysely, PostgresDialect, sql } from 'kysely';
-import { Database } from '../models/schema.js';
+import { Database } from '../db/schema.js';
 import { env } from '../config/env.js';
 
 // Create PostgreSQL pool

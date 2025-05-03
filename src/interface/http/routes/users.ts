@@ -1,5 +1,5 @@
 import { FastifyInstance, FastifyPluginAsync } from 'fastify';
-import { db } from '../db/index.js';
+import { db } from '../../../infrastructure/db/index.js';
 
 const userRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) => {
   // Public endpoint to get user count (for testing)
