@@ -1,0 +1,8 @@
+{
+  "singleQuote": true,          // 'text' místo "text"
+  "trailingComma": "all",       // poslední prvek v objektu/array → čárka
+  "printWidth": 100,            // zalamování
+  "semi": true,                 // ; na konci řádků
+  "tabWidth": 2,
+  "arrowParens": "avoid"        // (x) => x  →  x => x
+}

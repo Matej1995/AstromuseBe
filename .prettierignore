@@ -1,0 +1,7 @@
+# build artefakty
+dist
+node_modules
+# dot‑files generované IDE
+.vscode
+# test snapshots (jest/vitest)
+**/__snapshots__/**
